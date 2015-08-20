@@ -11,9 +11,11 @@ set :user, "root"
 set :deploy_to, "/root/deploy"
 set :deploy_via, :remote_cache 
 
-role :web, "192.168.1.103"
-role :app, "192.168.1.103"
-role :db, "192.168.1.103", :primary => true
+#role :web, "192.168.1.103"
+#role :app, "192.168.1.103"
+#role :db, "192.168.1.103", :primary => true
+
+server '192.168.1.103', user: 'root', roles: %w{web app db}
 
 set :stages, ["staging", "production"]
 set :default_stage, "production"
