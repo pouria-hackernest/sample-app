@@ -2,12 +2,12 @@ source 'https://rubygems.org'
 
 gem 'faker'
 gem 'will_paginate'
-gem 'capistrano', '~> 3.4.0'
-gem 'capistrano-bundler', '~> 1.1.2'
-gem 'capistrano-rbenv'
+gem 'capistrano', '~> 2.15.5'
+#gem 'capistrano-bundler', '~> 1.1.2'
+#gem 'capistrano-rbenv'
 gem 'sqlite3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.3'
+gem 'rails', '4.0.8'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -33,7 +33,7 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'unicorn'
 
 # Use Capistrano for deployment
- gem 'capistrano-rails', group: :development
+# gem 'capistrano-rails', group: :development
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
