@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'faker'
 gem 'will_paginate'
+gem 'capistrano', '~> 3.4.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
