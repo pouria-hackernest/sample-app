@@ -9,6 +9,8 @@ set :deploy_to, "/root/deploy"
 set :scm_username , "pouria-hackernest"
 set :branch, fetch(:branch, "master")
 
+set :normalize_asset_timestamps, false
+
 set :user, "root"
 
 # set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
