@@ -16,7 +16,7 @@ set :deploy_via, :remote_cache
 #role :db, "192.168.1.103", :primary => true
 
 server '192.168.1.103', user: 'root', roles: %w{web app db}
-
+set :linked_files, %w{config/database.yml}
 set :stages, ["staging", "production"]
 set :default_stage, "production"
 
