@@ -2,7 +2,7 @@
 lock '3.4.0'
 #require 'capistrano/ext/multistage'
 
-set :application, 'test'
+set :application, 'sample-app'
 set :repo_url, 'git@github.com:pouria-hackernest/sample-app.git'
 
 set :scm, :git
@@ -17,8 +17,8 @@ set :deploy_via, :remote_cache
 
 server '192.168.1.103', user: 'root', roles: %w{web app db}
 #set :linked_files, %w{config/database.yml}
-set :stages, ["staging", "production"]
-set :default_stage, "production"
+#set :stages, ["staging", "production"]
+#set :default_stage, "production"
 
 #after "deploy", "deploy:bundle_gems"
 
