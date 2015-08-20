@@ -1,6 +1,6 @@
 
 server "root@192.168.1.103", role: [:app, :web, :db], :primary => true
-set :deploy_to, "/root/deploy"
+set :deploy_to, "/root"
 
 # server-based syntax
 # ======================
