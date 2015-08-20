@@ -1,6 +1,8 @@
 
-server "root@192.168.1.103", role: [:app, :web, :db], :primary => true
-set :deploy_to, "/root"
+server "192.168.1.103", user: "root", roles: %w{web app db}
+set :deploy_to, "/root/deploy"
+
+
 
 # server-based syntax
 # ======================
