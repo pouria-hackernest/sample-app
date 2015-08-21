@@ -21,6 +21,7 @@ role :app, "192.168.1.103"                          # This may be the same as yo
 role :db,  "192.168.1.103", :primary => true # This is where Rails migrations will run
 #role :db,  "192.168.1.103"
 
+default_run_options[:pty] = true
 
 set :local_database, "sample-app_development"
 set :local_database_user, "root"
