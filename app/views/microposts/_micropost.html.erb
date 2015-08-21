@@ -1,6 +1,6 @@
 <div class="coolred">
-hello
-</div>
+hello <%= rails.env.production? %> <%= rails.env.development? %> <%=rails.env.te
+st? %>
 
 <li>
 	<span class="content"><%= micropost.content %></span>
