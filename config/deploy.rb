@@ -14,7 +14,7 @@ set :normalize_asset_timestamps, false
 #set :passenger_roles, :app
 set :user, "root"
 
-set :rails_env, "development"
+#set :rails_env, "development"
 set :db_local_clean, true
 set :db_remote_clean, true
 
