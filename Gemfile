@@ -5,6 +5,8 @@ gem 'will_paginate'
 gem 'capistrano', '~> 2.15.5'
 gem 'mysql'
 gem 'yaml_db'
+gem "capistrano-db-tasks", require: false
+#gem 'capistrano-mysqldump'
 #gem 'activejob', '4.0.8'
 #gem 'activesupport', '4.0.8'
 #gem 'capistrano-bundler', '~> 1.1.2'

@@ -1,4 +1,5 @@
 require "bundler/capistrano"
+require 'capistrano-db-tasks'
 
 set :application, "sample app"
 set :scm, :git
@@ -13,6 +14,10 @@ set :normalize_asset_timestamps, false
 #set :passenger_roles, :app
 set :user, "root"
 
+set :rails_env, "development"
+set :db_local_clean, true
+set :db_remote_clean, true
+
 # set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
@@ -21,29 +26,31 @@ role :app, "192.168.1.103"                          # This may be the same as yo
 role :db,  "192.168.1.103", :primary => true # This is where Rails migrations will run
 #role :db,  "192.168.1.103"
 
-default_run_options[:pty] = true
+#set :db_database, "sample-app_development"
+#set :db_username, "root"
+#set :db_password, "password"
 
-set :local_database, "sample-app_development"
-set :local_database_user, "root"
-set :local_database_password, "password"
-set :remote_database, "sample-app_development"
-set :remote_database_user, "root"
-set :remote_database_password, "password"
- 
-after "deploy:finalize_update", :update_database
- 
-desc "Upload the database to the server"
-task :update_database, :roles => :db, :only => { :primary => true } do
-    filename = "dump.#{Time.now.strftime '%Y%m%dT%H%M%S'}.sql"
-    remote_path = "tmp/#{filename}"
-    on_rollback {
-        delete remote_path
-    }
-    dumped_sql = `mysqldump --user=#{local_database_user} --password=#{local_database_password} #{local_database}`
-    put dumped_sql, remote_path
-    run "mysql --user=#{remote_database_user} --password=#{remote_database_password} #{remote_database} < #{remote_path}"
-end
 
+#namespace(:deploy) do
+#  desc "Backup MySQL Database"
+#  task :mysqlbackup, :roles => :app do
+#    run "mysqldump -u#{db_username} -p#{db_password} #{db_database} > #{shared_path}/backups/#{release_name}.sql"
+#  end
+#end
+
+#namespace(:deploy) do
+#  desc "Restore MySQL Database"
+#  task :mysqlrestore, :roles => :app do
+#    backups = capture("ls -1 #{shared_path}/backups/").split("\n")
+#    default_backup = backups.last
+#    puts "Available backups: "
+#    puts backups
+#    backup = Capistrano::CLI.ui.ask "Which backup would you like to restore? [#{default_backup}] "
+#    backup_file = default_backup if backup.empty?
+
+#    run "mysql -u#{db_username} -p#{db_password} #{db_database} < #{shared_path}/backups/#{backup_file}"
+#  end
+#end
 
 #set :stages, ["staging", "production"]
 #set :default_stage, "production"
