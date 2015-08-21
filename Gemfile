@@ -6,7 +6,7 @@ gem 'capistrano', '~> 2.15.5'
 gem 'mysql'
 gem 'yaml_db'
 gem "capistrano-db-tasks", require: false
-#gem 'rails_12factor', group: :production
+gem 'rails_12factor', group: :production
 #gem 'rails_12factor', group: :production
 #gem 'capistrano-mysqldump'
 #gem 'activejob', '4.0.8'
