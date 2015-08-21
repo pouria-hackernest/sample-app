@@ -14,9 +14,11 @@ set :normalize_asset_timestamps, false
 #set :passenger_roles, :app
 set :user, "root"
 
-#set :rails_env, "development"
+set :rails_env, "production"
 set :db_local_clean, true
 set :db_remote_clean, true
+
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 # set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
@@ -26,12 +28,9 @@ role :app, "192.168.1.103"                          # This may be the same as yo
 role :db,  "192.168.1.103", :primary => true # This is where Rails migrations will run
 #role :db,  "192.168.1.103"
 
-#set :db_database, "sample-app_development"
 #set :db_username, "root"
 #set :db_password, "password"
 
-
-#namespace(:deploy) do
 #  desc "Backup MySQL Database"
 #  task :mysqlbackup, :roles => :app do
 #    run "mysqldump -u#{db_username} -p#{db_password} #{db_database} > #{shared_path}/backups/#{release_name}.sql"
@@ -57,6 +56,11 @@ role :db,  "192.168.1.103", :primary => true # This is where Rails migrations wi
 
 # if you want to clean up old releases on each deploy uncomment this:
 after "deploy:restart", "deploy:cleanup"
+#before  'deploy:assets:precompile', 'db:remote:sync'
+#before 'db:remote:sync', 'deploy:migrate'
+#before 'deploy:assets:precompile', 'deploy:symlink_db' # callback: run this task before deploy:assets:precompile
+#before 'deploy:assets:precompile', 'deploy:symlink_secret_token' # # callback: run this task before deploy:assets:precompile
+#after "deploy", "deploy:cleanup" # delete old releases
 #after 'deploy:bundle_install', 'deploy:migrate'
 
 # if you're still using the script/reaper helper you will need
